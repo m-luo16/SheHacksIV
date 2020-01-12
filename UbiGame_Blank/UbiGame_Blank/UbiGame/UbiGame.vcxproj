@@ -197,6 +197,9 @@
     <Image Include="Resources\img\Q7.png" />
     <Image Include="Resources\img\Q8.png" />
     <Image Include="Resources\img\Q9.png" />
+    <Image Include="Resources\img\quit.png">
+      <DeploymentContent>true</DeploymentContent>
+    </Image>
     <Image Include="Resources\img\TrueBtn.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

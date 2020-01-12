@@ -29,6 +29,7 @@ namespace Game
 		void UpdateQuestion();
 		void CreateRightButton();
 		void CreateBG();
+		void CreateQuit();
 		void CreateObstacle();
 		bool questions[10];
 		int score;
@@ -42,9 +43,11 @@ namespace Game
 		GameEngine::Entity* question;
 		GameEngine::Entity* text;
 		GameEngine::Entity* count;
+		GameEngine::Entity* quit;
 		bool flag;
 		bool left_down;
 		bool right_down;
+		bool game_over;
 	};
 }
 

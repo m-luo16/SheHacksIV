@@ -182,5 +182,8 @@
     <Image Include="Resources\img\bg.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="Resources\img\quit.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

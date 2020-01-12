@@ -25,6 +25,7 @@ GameBoard::GameBoard()
 	}
 	, cur_question(0)
 	, flag(false)
+	, game_over (false)
 	, right_down(false)
 	, left_down(false)
 	, timer(60.f)
@@ -67,8 +68,9 @@ void GameBoard::CreateRightButton() {
 }
 
 void GameBoard::UpdateQuestion() {
-		//delete question;
-
+	if (question) {
+		GameEngine::GameEngineMain::GetInstance()->RemoveEntity(question);
+	}
 	question = new GameEngine::Entity();
 	GameEngine::GameEngineMain::GetInstance()->AddEntity(question);
 
@@ -95,6 +97,20 @@ void GameBoard::CreateBG() {
 	spriteRender->SetFillColor(sf::Color::Transparent);
 	spriteRender->SetTexture(GameEngine::eTexture::BG);
 	spriteRender->SetZLevel(-1);
+}
+
+void GameBoard::CreateQuit() {
+	quit = new GameEngine::Entity();
+	GameEngine::GameEngineMain::GetInstance()->AddEntity(quit);
+
+	quit->SetPos(sf::Vector2f(500.f,500.f));
+	quit->SetSize(sf::Vector2f(1000.f, 1000.f));
+
+	GameEngine::SpriteRenderComponent* spriteRender = static_cast<GameEngine::SpriteRenderComponent*>
+		(quit->AddComponent<GameEngine::SpriteRenderComponent>());
+
+	spriteRender->SetFillColor(sf::Color::Transparent);
+	spriteRender->SetTexture(GameEngine::eTexture::QUIT);
 }
 
 void GameBoard::createText() {
@@ -144,9 +160,18 @@ void GameBoard::Update()
 		
 	}
 	
-	if (timer <= 0.f)
+	if (timer <= 0.f|| cur_question==9)
 	{
-		// GAME OVER HERE!
+		game_over = true;
+		CreateQuit();
+		if (game_over) {
+			left_down = true;
+			right_down = true;
+		}
+		GameEngine::TextRenderComponent* countRender = count->GetComponent<GameEngine::TextRenderComponent>();
+		countRender->setText(std::to_string(score));
+		countRender->setPos(600.f, 475.f);
+		countRender->SetZLevel(100);
 	}
 
 }

@@ -24,6 +24,7 @@ namespace GameEngine
 			Q9,
 			Q10,
 			BG,
+			QUIT,
 			Count,
 		};
 	}	
@@ -45,6 +46,8 @@ namespace GameEngine
 			case eTexture::Q9: return "Q9.png";
 			case eTexture::Q10: return "Q10.png";
 			case eTexture::BG: return "bg.png";
+			case eTexture::QUIT: return "quit.png";
+
 		}
 
 		return "UnknownTexType";
